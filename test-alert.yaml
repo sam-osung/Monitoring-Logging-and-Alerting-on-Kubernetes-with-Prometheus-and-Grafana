@@ -4,15 +4,17 @@ metadata:
   name: test-alert-rule
   namespace: monitoring
   labels:
-    release: kube-prometheus-stack
+    role: alert-rules
 spec:
   groups:
-  - name: example
+  - name: test-alerts
     rules:
-    - alert: HighCPUExample
-      expr: sum(rate(container_cpu_usage_seconds_total{container!="", namespace=~"monitoring"}[2m])) > 0.01
-      for: 1m
+    - alert: TestAlertFiring
+      expr: vector(1)
+      for: 0m
       labels:
         severity: warning
+        namespace: test-namespace
       annotations:
-        summary: "Example CPU alert to test Slack notifications"
+        summary: "This is a test firing alert"
+        description: "The TestAlertFiring alert is triggered to validate Slack integration"
