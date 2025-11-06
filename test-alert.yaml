@@ -1,20 +1,19 @@
 apiVersion: monitoring.coreos.com/v1
 kind: PrometheusRule
 metadata:
-  name: test-alert-rule
+  name: test-alert
   namespace: monitoring
   labels:
-    role: alert-rules
+    release: kps   
 spec:
   groups:
-  - name: test-alerts
+  - name: test.rules
     rules:
-    - alert: TestAlertFiring
+    - alert: TestAlert
       expr: vector(1)
-      for: 0m
+      for: 5s
       labels:
         severity: warning
-        namespace: test-namespace
       annotations:
-        summary: "This is a test firing alert"
-        description: "The TestAlertFiring alert is triggered to validate Slack integration"
+        summary: "Test alert firing"
+        description: "This is a test alert firing to Slack"
