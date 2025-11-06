@@ -9,7 +9,7 @@ spec:
   receivers:
   - name: "slack-notifications"
     slackConfigs:
-    - channel: "#alerts"  # Your Slack channel
+    - channel: "#alerts"
       sendResolved: true
       apiURL:
         name: alertmanager-slack-webhook
